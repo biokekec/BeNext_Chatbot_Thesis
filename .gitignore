@@ -1,0 +1,33 @@
+# python
+__pycache__/
+*.py[cod]
+
+# notebooks
+.ipynb_checkpoints/
+
+# environment files
+.env
+.env.*
+venv/
+.venv/
+
+# system files
+.DS_Store
+Thumbs.db
+
+# outputs
+outputs/
+results/
+*.log
+
+# model/cache files
+.cache/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# private data
+data/private/
+data/raw/
