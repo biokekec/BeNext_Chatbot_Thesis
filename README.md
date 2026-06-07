@@ -24,7 +24,6 @@ The work was developed in the context of a BeNext chatbot prototype and evaluate
 │   ├── in_scope_QA.csv
 │   ├── out_of_scope_QA.csv
 │   └── QA_guidelines.csv
-├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
@@ -81,22 +80,6 @@ Contains constructed out-of-scope examples. These are used to test whether the c
 ### `QA_guidelines.csv`
 
 Contains answer guidelines used in the chatbot prompts. These guidelines define the desired answer style, scope boundaries, and safety constraints.
-
-## Setup
-
-Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Some experiments require access to Hugging Face models. If a model requires authentication, add your Hugging Face token as an environment variable:
-
-```bash
-export HF_TOKEN="your_token_here"
-```
-
-Do not commit tokens, `.env` files, or private credentials to the repository.
 
 ## Notes on reproducibility
 
