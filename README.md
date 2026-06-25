@@ -32,8 +32,6 @@ The work was developed in the context of a BeNext chatbot prototype and evaluate
 │   ├── qa_results_deepseek-ai_DeepSeek-R1-Distill-Qwen-14B.csv
 │   └── evaluation/
 │       ├── benext_llm_judge_evaluated_answers.csv
-│       ├── benext_llm_judge_summary_by_approach_dataset.csv
-│       ├── benext_llm_judge_summary_by_group.csv
 │       ├── annotation_1.xlsx
 │       └── annotation_2.xlsx
 ├── .gitignore
@@ -150,14 +148,6 @@ Contains the LLM-as-a-judge scores for the generated chatbot answers. The file i
 * judge notes.
 
 This is the main evaluation file used for analysing QA approach performance, model performance, language differences, and metric-level differences.
-
-### `results/evaluation/benext_llm_judge_summary_by_approach_dataset.csv`
-
-Contains aggregated LLM-judge results grouped by QA approach and dataset type. This file is useful for comparing performance on in-scope versus out-of-scope questions.
-
-### `results/evaluation/benext_llm_judge_summary_by_group.csv`
-
-Contains grouped summary statistics from the LLM-judge evaluation. This file is used for higher-level comparison of approaches, models, languages, and evaluation metrics.
 
 ### `results/evaluation/annotation_1.xlsx`
 
