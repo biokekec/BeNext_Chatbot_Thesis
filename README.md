@@ -157,59 +157,6 @@ Contains manual annotation data for a sample of generated answers. This file is 
 
 Contains an additional manual annotation file. This file supports validation of the automated evaluation process and comparison between annotation rounds or annotators.
 
-## Experimental setup
-
-The benchmark consists of 50 constructed in-scope QA pairs and 30 constructed out-of-scope QA pairs. Each pair is available in English and Dutch.
-
-To avoid retrieval leakage, the 50 in-scope QA pairs were split before bilingual expansion. A 70/30 split was used:
-
-* 35 in-scope QA pairs were used for the retrieval library;
-* 15 in-scope QA pairs were held out for testing.
-
-After bilingual expansion, this produced:
-
-* 70 retrieval items;
-* 30 held-out in-scope test items;
-* 60 out-of-scope test items.
-
-The final test set therefore contains 90 bilingual test items.
-
-The final model comparison includes five open instruction-tuned models:
-
-* Qwen2.5-7B-Instruct;
-* Qwen2.5-14B-Instruct;
-* Mistral-7B-Instruct-v0.3;
-* DeepSeek-R1-Distill-Qwen-7B;
-* DeepSeek-R1-Distill-Qwen-14B.
-
-The final pipeline uses Lingua for language detection and prompt-based scope detection for deciding whether a question is inside or outside the supported energy-monitoring domain. Scope routing was fixed across model runs so that answer-generation models could be compared under the same routing conditions.
-
-## QA approaches
-
-### Closed-book QA
-
-Closed-book QA generates an answer using only the current user question, the available system-side context, and the general answer guidelines. It does not use retrieved examples.
-
-This approach is included as the simplest generative baseline.
-
-### Retrieval-based QA
-
-Retrieval-based QA uses TF-IDF similarity to retrieve the most similar question from the retrieval library. It then returns the corresponding reference answer or a fallback response.
-
-This approach does not generate a new answer with the answer-generation model. It is included as a nearest-neighbour baseline.
-
-### Retrieval-augmented generation
-
-RAG first retrieves similar cases from the retrieval library and then provides them to the model as examples in the prompt. The model then generates a new answer for the current question.
-
-In the RAG setup, retrieval is based on question-level TF-IDF similarity. Retrieved reference answers are only included when the similarity score is high enough. This was done to reduce the risk of copying answers from weakly related cases.
-
-## Notes on retrieval-based QA
-
-Retrieval-based QA is included as a fixed nearest-neighbour baseline. It does not use the answer-generation model to create a new response.
-
-Because retrieval-based QA does not depend on the answer-generation model, it should not be interpreted as a model-specific generative result. It is included to compare retrieval-only behaviour against closed-book QA and RAG.
-
 ## Notes on evaluation
 
 The main automated evaluation uses an LLM-as-a-judge approach. Each generated answer is evaluated against the question, expected language, available context, reference answer, expected answer points, and content that should not be included.
@@ -248,7 +195,7 @@ The datasets in this repository are constructed benchmark datasets, not real use
 
 The current implementation focuses on English and Dutch. Support for additional languages would require additional translated or language-specific benchmark data, language detection validation, and retrieval testing.
 
-The retrieval setup uses TF-IDF as a transparent baseline. More advanced retrieval methods, such as dense embeddings, hybrid retrieval, reranking, or document-level RAG over larger BeNext source materials, were not included in the current prototype.
+The retrieval setup uses TF-IDF as a transparent baseline. More advanced retrieval methods, such as dense embeddings, hybrid retrieval, reranking, or document-level RAG over larger source materials, were not included in the current prototype.
 
 The LLM-as-a-judge evaluation provides a scalable first evaluation layer, but automated scores may contain bias. Manual annotation files are included to support validation of the automated evaluation.
 
